@@ -39,6 +39,7 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
+          force: true
       
       - name: Build with Hugo
         env:
@@ -48,7 +49,8 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+            --baseURL "${{ steps.pages.outputs.base_url }}/" \
+            --theme hugo-theme
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
