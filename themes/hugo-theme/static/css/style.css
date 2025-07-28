@@ -1435,6 +1435,30 @@ section.blog-header p.blog-description {
     font-size: 0.875rem;
 }
 
+/* Banner image styling - only for full blog posts, not previews */
+.blog-post .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    margin: var(--space-lg) 0;
+    box-shadow: var(--shadow-md);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hide images in blog card excerpts/previews */
+.blog-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    margin: var(--space-lg) 0;
+    box-shadow: var(--shadow-md);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .post-content pre {
     background: var(--bg-tertiary);
     padding: var(--space-md);

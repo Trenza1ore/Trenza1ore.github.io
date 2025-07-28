@@ -6,6 +6,8 @@ tags: ["Reinforcement Learning", "Stable Baselines3", "Compression", "Memory Opt
 ---
 I'm excited to share that my project **sb3-extra-buffers** has been featured in the official Stable Baselines3 documentation! This small but powerful library addresses a common pain point in Reinforcement Learning: the massive memory consumption of replay and rollout buffers when working with image-based observations.
 
+![Banner Image](https://github.com/user-attachments/assets/e6e5cd2f-55d4-4686-abf7-773148d80ad2)
+
 ## The Problem: Memory-Hungry RL Buffers
 
 Reinforcement learning is often considered memory-hungry due to the enormous amount of RAM required to store replay and rollout buffers. When you read a cool RL paper and try to reproduce their results, you might find yourself needing to store **millions** of observations in memory. This becomes especially problematic when working with:
