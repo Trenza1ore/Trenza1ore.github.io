@@ -1,0 +1,52 @@
+baseURL = 'https://trenza1ore.github.io/'
+languageCode = 'en-us'
+title = 'Hugo Huang'
+theme = 'hugo-theme'
+
+[params]
+  description = "Research engineer @ Huawei R&D UK, big fan of Doom"
+  author = "Hugo Huang"
+  github = "https://github.com/Trenza1ore"
+  linkedin = "https://uk.linkedin.com/in/hugohuang123"
+  google_scholar = "https://scholar.google.com/citations?user=1TIEH0EAAAAJ"
+  
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
+  [[menu.main]]
+    identifier = "publications"
+    name = "Publications"
+    url = "/publications/"
+    weight = 3
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    weight = 4
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    noClasses = true
+    lineNos = false
+    tabWidth = 4
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNumbersInTable = true
+    wrapperClass = "highlight"
+
+# Legacy Pygments settings (for compatibility)
+pygmentsUseClasses = false
+pygmentsCodeFences = true

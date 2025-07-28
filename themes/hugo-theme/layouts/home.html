@@ -1,0 +1,154 @@
+{{ define "header" }}
+{{ partial "header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Hi, I'm <span class="intro-highlight">{{ .Site.Params.author }}</span> 👋
+            </h1>
+            <p class="hero-subtitle">{{ .Site.Params.description }}</p>
+            <div class="hero-buttons">
+                <a href="/projects/" class="btn btn-primary">View Projects</a>
+                <a href="/blog/" class="btn btn-secondary">Read Blog</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="showcase">
+    <div class="container">
+        <div class="showcase-content">
+            <div class="showcase-text">
+                <h2 class="showcase-title">Featured Project</h2>
+                <h3 class="showcase-subtitle">std-raytracer</h3>
+                <p class="showcase-description">
+                    A comprehensive C++ raytracer built from scratch using only the standard library. Features include Blinn-Phong shading, shadows, reflections, refractions, textures, and tone mapping. Advanced features include BVH (Bounding Volume Hierarchy) for performance, antialiasing sampling, aperture sampling for depth of field, BRDF materials, area light sampling, and multi-bounce path tracing for photorealistic rendering.
+                </p>
+                <div class="showcase-links">
+                    <a href="/projects/" class="btn btn-primary">View Project</a>
+                    <a href="https://github.com/Trenza1ore/std-raytracer" class="btn btn-primary" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="showcase-video">
+                <video controls autoplay muted loop>
+                    <source src="/videos/raytrace-render.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+          <div class="about-text">
+              <p>NLP research engineer at Huawei R&D UK with a passion for Artificial Intelligence, Reinforcement Learning, Natural Language Processing and Computer Vision.<br><br>I hold an MSc in Artificial Intelligence from the University of Edinburgh and a BSc in Computer Science from Cardiff University.<br><br>My interest is not limited to NLP, CV or RL tho. Like any gamer, I love all visual stuffs!</p>
+              <ul class="skills-list">
+                  <li>Reinforcement Learning</li>
+                  <li>Computer Vision</li>
+                  <li>LLM Agents</li>
+                  <li>Computer Graphics</li>
+              </ul>
+          </div>
+          <div class="about-visual">
+              <div class="about-gif">
+                  <img src="/gifs/rtss_map1_ep5_ss.gif" alt="Playing Doom with Semantic Segmentation" />
+                  <p class="gif-caption">Playing Doom with Semantic Segmentation</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+    <div class="container">
+        <h2 class="section-title">Contribution to Open Source Projects</h2>
+        <div class="projects-grid">
+        <div class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">ViZDoom</h3>
+                <span class="project-tag">Research</span>
+            </div>
+            <p class="project-description">Contributed to ViZDoom, a platform for AI research on the classic video game of Doom. Proposed & implemented the Python typing support, enabling IDEs to recognize & provide hinting for ViZDoom classes, functions, enums, etc.</p>
+            <div class="project-links">
+                <a href="https://github.com/Farama-Foundation/ViZDoom" class="project-link" target="_blank">GitHub</a>
+                <a href="https://vizdoom.farama.org/main/introduction/building/" class="project-link" target="_blank">Docs</a>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">RL</span>
+              <span class="tech-tag">CV</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">CMake</span>
+              <span class="tech-tag">Doom</span>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">Stable Baselines3</h3>
+                <span class="project-tag">Research</span>
+            </div>
+            <p class="project-description">Contributed to Stable Baselines3, a set of reliable implementations of Reinforcement Learning algorithms in PyTorch. Currently proposing to uniform buffer dtype decision logic and the overall interface of buffer classes.</p>
+            <div class="project-links">
+                <a href="https://github.com/DLR-RM/stable-baselines3" class="project-link" target="_blank">GitHub</a>
+                <a href="https://stable-baselines3.readthedocs.io/en/master/index.html" class="project-link" target="_blank">Docs</a>
+            </div>
+            <div class="project-tech">
+                <span class="tech-tag">RL</span>
+                <span class="tech-tag">CV</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">PyTorch</span>
+                <span class="tech-tag">Gym</span>
+                <span class="tech-tag">Atari</span>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: var(--space-xl);">
+        <a href="/projects/" class="btn btn-primary">View All Projects</a>
+    </div>
+</section>
+
+<section class="blog-preview">
+    <div class="container">
+        <div class="blog-preview-header">
+            <h2 class="section-title">Latest Blog Posts</h2>
+            <a href="/blog/" class="view-all-link">View All Posts →</a>
+        </div>
+        <div class="blog-grid">
+            {{ range first 3 (where .Site.RegularPages "Section" "blog") }}
+            <article class="blog-card">
+                <div class="blog-card-content">
+                    <h3 class="blog-card-title">
+                        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </h3>
+                    <p class="blog-card-excerpt">{{ .Summary }}</p>
+                    <div class="blog-card-meta">
+                        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                    </div>
+                </div>
+            </article>
+            {{ else }}
+            <div class="no-posts">
+                <p>No blog posts yet. Check back soon!</p>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{ define "footer" }}
+{{ partial "footer.html" . }}
+{{ end }}

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="container">
+    <section class="publications-header">
+        <div class="container">
+            <h1 class="publications-title">{{ .Title }}</h1>
+            <p class="publications-description">{{ .Description }}</p>
+        </div>
+    </section>
+    
+    <div class="publications-content">
+        <div class="container">
+            <div class="publications-grid">
+                {{ range .Pages }}
+                <article class="publication-card">
+                    <div class="publication-header">
+                        <h2 class="publication-title">{{ .Title }}</h2>
+                        <span class="publication-type">{{ .Type | title }}</span>
+                    </div>
+                    {{ if .Params.authors }}
+                    <p class="publication-authors">{{ .Params.authors }}</p>
+                    {{ end }}
+                    {{ if .Description }}
+                    <p class="publication-description">{{ .Description }}</p>
+                    {{ end }}
+                    <div class="publication-links">
+                        <a href="{{ .RelPermalink }}" class="publication-link">Read More</a>
+                    </div>
+                </article>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+{{ define "header" }}{{ partial "header.html" . }}{{ end }}
+{{ define "footer" }}{{ partial "footer.html" . }}{{ end }} 

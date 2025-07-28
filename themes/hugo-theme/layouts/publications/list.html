@@ -1,0 +1,90 @@
+{{ define "header" }}
+{{ partial "header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<section class="publications-header">
+    <div class="container">
+        <h1 class="publications-title">Publications</h1>
+        <p class="publications-description">Academic publications in Artificial Intelligence and Computer Science.</p>
+    </div>
+</section>
+
+<section class="publications-content">
+    <div class="container">
+        <div class="publications-grid">
+            <!-- BEV@DC Paper -->
+            <article class="publication-card featured">
+                <div class="publication-header">
+                    <h2 class="publication-title">BEV@DC: Bird's-Eye View Assisted Training for Depth Completion</h2>
+                    <span class="publication-type">Conference Paper</span>
+                </div>
+                <p class="publication-authors">Wending Zhou, Xu Yan, Yinghong Liao, Yuankai Lin, Jin Huang, Gangming Zhao, Shuguang Cui, Zhen Li</p>
+                <p class="publication-description">
+                    A novel multi-modal training scheme that leverages LiDAR geometric details to enhance image-guided depth completion for autonomous driving. The proposed BEV@DC model achieves state-of-the-art performance, ranking Top-1 on the challenging KITTI depth completion benchmark.
+                </p>
+                <div class="publication-links">
+                    <a href="https://ieeexplore.ieee.org/document/10205368" class="publication-link" target="_blank">IEEE Xplore</a>
+                    <a href="https://openaccess.thecvf.com/content/CVPR2023/html/Zhou_BEVDC_Birds-Eye_View_Assisted_Training_for_Depth_Completion_CVPR_2023_paper.html" class="publication-link" target="_blank">CVF Open Access</a>
+                </div>
+                <div class="publication-tech">
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Depth Completion</span>
+                    <span class="tech-tag">Autonomous Driving</span>
+                    <span class="tech-tag">CVPR 2023</span>
+                </div>
+            </article>
+
+            <!-- MSc Thesis -->
+            <article class="publication-card">
+                <div class="publication-header">
+                    <h2 class="publication-title">Enhancing Reinforcement Learning in 3D Environments through Semantic Segmentation: A Case Study in ViZDoom</h2>
+                    <span class="publication-type">MSc Thesis</span>
+                </div>
+                <p class="publication-authors">Jin Huang</p>
+                <p class="publication-description">
+                    This thesis addresses two major challenges in RL for 3D environments: high memory consumption and POMDP complexity. We propose novel SS-only and RGB+SS input representations using semantic segmentation, achieving up to 98.6% memory reduction with run-length encoding while significantly enhancing agent performance in ViZDoom deathmatches.
+                </p>
+                <div class="publication-links">
+                    <a href="/papers/Enhancing_Reinforcement_Learning_in_3D_Environments_through_Semantic_Segmentation.pdf" class="publication-link" target="_blank">Download PDF</a>
+                    <a href="https://github.com/Trenza1ore/SegDoom" class="publication-link" target="_blank">View Project</a>
+                </div>
+                <div class="publication-tech">
+                    <span class="tech-tag">Reinforcement Learning</span>
+                    <span class="tech-tag">Semantic Segmentation</span>
+                    <span class="tech-tag">ViZDoom</span>
+                    <span class="tech-tag">Memory Optimization</span>
+                    <span class="tech-tag">University of Edinburgh</span>
+                    <span class="tech-tag">2024</span>
+                </div>
+            </article>
+
+            <!-- LLM Shots Paper -->
+            <article class="publication-card">
+                <div class="publication-header">
+                    <h2 class="publication-title">LLM Shots: Best Fired at System or User Prompts?</h2>
+                    <span class="publication-type">Conference Paper</span>
+                </div>
+                <p class="publication-authors">Umut Halil, Jin Huang, Damien Graux, Jeff Z Pan</p>
+                <p class="publication-description">
+                    This study addresses the research question of where to place examples (shots) in LLM prompts to improve performance. We systematically test different shooting combinations with system and user messages to determine the optimal placement for enhancing LLM performance.
+                </p>
+                <div class="publication-links">
+                    <a href="https://dl.acm.org/doi/abs/10.1145/3701716.3717814" class="publication-link" target="_blank">ACM Digital Library</a>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=1TIEH0EAAAAJ&citation_for_view=1TIEH0EAAAAJ:2osOgNQ5qMEC" class="publication-link" target="_blank">Google Scholar</a>
+                </div>
+                <div class="publication-tech">
+                    <span class="tech-tag">Large Language Models</span>
+                    <span class="tech-tag">Prompt Engineering</span>
+                    <span class="tech-tag">System Messages</span>
+                    <span class="tech-tag">ACM Web Conference</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{ define "footer" }}
+{{ partial "footer.html" . }}
+{{ end }} 

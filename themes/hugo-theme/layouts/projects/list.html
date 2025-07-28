@@ -1,0 +1,139 @@
+{{ define "header" }}
+{{ partial "header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<section class="projects-header">
+    <div class="container">
+        <h1 class="projects-title">Projects</h1>
+        <p class="projects-description">A collection of my notable projects in AI, reinforcement learning, and open source development.</p>
+    </div>
+</section>
+
+<section class="projects-content">
+    <div class="container">
+        <div class="projects-grid">
+            <!-- Raytracer Project - Wide Card -->
+            <article class="project-card featured wide-card">
+                <div class="project-header">
+                    <h2 class="project-title">std-raytracer</h2>
+                    <span class="project-tag">Featured</span>
+                </div>
+                <div class="project-content-wide">
+                    <div class="project-video-large">
+                        <video controls autoplay muted loop>
+                            <source src="/videos/raytrace-render.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="project-info">
+                        <p class="project-description">
+                            A comprehensive C++ raytracer built from scratch using only the standard library. Features include Blinn-Phong shading, shadows, reflections, refractions, textures, and tone mapping. Advanced features include BVH (Bounding Volume Hierarchy) for performance, antialiasing sampling, aperture sampling for depth of field, BRDF materials, area light sampling, and multi-bounce path tracing for photorealistic rendering.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Trenza1ore/std-raytracer" class="project-link" target="_blank">GitHub</a>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Path Tracing</span>
+                            <span class="tech-tag">BVH</span>
+                            <span class="tech-tag">BRDF</span>
+                            <span class="tech-tag">Antialiasing</span>
+                            <span class="tech-tag">STL</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ViZDoom Project -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2 class="project-title">ViZDoom</h2>
+                    <span class="project-tag">Research</span>
+                </div>
+                <p class="project-description">Contributed to ViZDoom, a platform for AI research on the classic video game of Doom. Proposed & implemented the Python typing support, enabling IDEs to recognize & provide hinting for ViZDoom classes, functions, enums, etc. The tool for building Python type stubs programmically is made available as both a utility script and part of build process.</p>
+                <div class="project-links">
+                    <a href="https://github.com/Farama-Foundation/ViZDoom" class="project-link" target="_blank">GitHub</a>
+                    <a href="https://vizdoom.farama.org/main/introduction/building/" class="project-link" target="_blank">Docs</a>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">RL</span>
+                    <span class="tech-tag">CV</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">CMake</span>
+                    <span class="tech-tag">Doom</span>
+                </div>
+            </article>
+
+            <!-- SegDoom Project -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2 class="project-title">SegDoom</h2>
+                    <span class="project-tag">Research</span>
+                </div>
+                <p class="project-description">
+                    My MSc thesis project: Training Reinforcement Learning agents on Doom with Semantic Segmentation. This project uses novel heatmap analysis methods and iteratively trained two generation of RL agents by creating the Semantic Segmentation dataset with the best explorer agent statistically. Investigated the different charateristics of each input type (RGB, SS, SS+RGB).
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/Trenza1ore/SegDoom" class="project-link" target="_blank">GitHub</a>
+                    <a href="/publications/" class="project-link">Thesis</a>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">RL</span>
+                    <span class="tech-tag">Semantic Segmentation</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Doom</span>
+                </div>
+            </article>
+
+            <!-- Stable Baselines3 Project -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2 class="project-title">Stable Baselines3</h2>
+                    <span class="project-tag">Research</span>
+                </div>
+                <p class="project-description">Contributed to Stable Baselines3, a set of reliable implementations of Reinforcement Learning algorithms in PyTorch. Currently proposing to uniform buffer dtype decision logic and the overall interface of buffer classes.</p>
+                <div class="project-links">
+                    <a href="https://github.com/DLR-RM/stable-baselines3" class="project-link" target="_blank">GitHub</a>
+                    <a href="https://stable-baselines3.readthedocs.io/en/master/index.html" class="project-link" target="_blank">Docs</a>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">RL</span>
+                    <span class="tech-tag">CV</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">Gym</span>
+                    <span class="tech-tag">Atari</span>
+                </div>
+            </article>
+
+            <!-- sb3-extra-buffers Project -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2 class="project-title">sb3-extra-buffers</h2>
+                    <span class="project-tag">Open Source</span>
+                </div>
+                <p class="project-description">
+                    Created sb3-extra-buffers, a library that adds compressed rollout/replay buffers to Stable Baselines3. Featured in the official SB3 documentation, it provides 90%+ memory savings for image-based observations using compression algorithms like zstd, gzip, LZ4, and RLE.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/Trenza1ore/sb3-extra-buffers" class="project-link" target="_blank">GitHub</a>
+                    <a href="https://pypi.org/project/sb3-extra-buffers/" class="project-link" target="_blank">PyPI</a>
+                    <a href="https://stable-baselines3.readthedocs.io/en/master/misc/projects.html#sb3-extra-buffers-ram-expansions-are-overrated-just-compress-your-observations" class="project-link" target="_blank">SB3</a>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Memory Optimization</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">NumPy</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{ define "footer" }}
+{{ partial "footer.html" . }}
+{{ end }} 
