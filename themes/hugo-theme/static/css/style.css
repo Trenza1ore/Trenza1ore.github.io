@@ -634,8 +634,8 @@ body {
 }
 
 .skills-list li {
-    background: var(--gradient-primary);
-    color: white;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
     padding: var(--space-xs) var(--space-md);
     border-radius: var(--radius-lg);
     font-weight: 500;
@@ -645,6 +645,7 @@ body {
     overflow: hidden;
     animation: skillFloat 8s ease-in-out infinite;
     animation-delay: calc(var(--skill-index, 0) * 0.2s);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .skills-list li::before {
@@ -671,8 +672,10 @@ body {
 }
 
 .skills-list li:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: var(--shadow-lg), 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-md);
+    background: var(--primary);
+    color: white;
     animation-play-state: paused;
 }
 
@@ -685,12 +688,12 @@ body {
 }
 
 .skills-list li:nth-child(even) {
-    background: var(--gradient-secondary);
+    background: var(--bg-secondary);
     animation-delay: calc(var(--skill-index, 0) * 0.2s + 0.5s);
 }
 
 .skills-list li:nth-child(3n) {
-    background: var(--gradient-accent);
+    background: var(--bg-tertiary);
     animation-delay: calc(var(--skill-index, 0) * 0.2s + 1s);
 }
 
@@ -791,11 +794,22 @@ body {
     color: var(--primary);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    background: rgba(99, 102, 241, 0.05);
+    border: 1px solid transparent;
+    display: inline-block;
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
 }
 
 .project-link:hover {
     color: var(--primary-dark);
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 .project-tech {
@@ -805,12 +819,13 @@ body {
 }
 
 .tech-tag {
-    background: var(--bg-tertiary);
+    background: var(--bg-secondary);
     color: var(--text-secondary);
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-md);
     font-size: 0.875rem;
     font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Blog Preview */
@@ -1089,19 +1104,21 @@ section.blog-header p.blog-description {
 }
 
 .tech-tag {
-    background: var(--bg-tertiary);
+    background: var(--bg-secondary);
     color: var(--text-secondary);
     padding: var(--space-xs) var(--space-sm);
     border-radius: var(--radius-md);
     font-size: 0.8rem;
     font-weight: 500;
     transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .tech-tag:hover {
     background: var(--primary);
     color: white;
     transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Project Video Styling */
