@@ -100,11 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
             
             // Check if we've reached 10 clicks
-            if (clickCount === 10) {
+            if (clickCount >= 10) {
                 // Play the Doom music
                 audio.currentTime = 0;
                 audio.play().then(() => {
-                    // Stop after 15 seconds
+                    // Stop after 17.5 seconds
                     setTimeout(() => {
                         audio.pause();
                         audio.currentTime = 0;
