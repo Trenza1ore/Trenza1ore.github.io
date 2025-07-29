@@ -78,4 +78,50 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // Doom easter egg - click Hugo Huang 10 times to play E1M1
+    const logoText = document.querySelector('.logo-text');
+    let clickCount = 0;
+    let audio = null;
+    
+    if (logoText) {
+        // Preload audio
+        audio = new Audio('/audio/doom-e1m1.mp3');
+        audio.volume = 0.3; // Set volume to 30%
+        
+        logoText.addEventListener('click', function(e) {
+            e.preventDefault();
+            clickCount++;
+            
+            // Visual feedback
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+            
+            // Check if we've reached 10 clicks
+            if (clickCount === 10) {
+                // Play the Doom music
+                audio.currentTime = 0;
+                audio.play().then(() => {
+                    // Stop after 15 seconds
+                    setTimeout(() => {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }, 17500);
+                }).catch(err => {
+                    console.log('Audio play failed:', err);
+                });
+                
+                // Reset counter
+                clickCount = 0;
+                
+                // Add a subtle visual effect
+                this.style.animation = 'doomGlow 2s ease-in-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 2000);
+            }
+        });
+    }
 }); 

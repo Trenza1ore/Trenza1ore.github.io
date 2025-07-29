@@ -449,6 +449,17 @@ body {
     }
 }
 
+@keyframes doomGlow {
+    0%, 100% { 
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        filter: hue-rotate(0deg);
+    }
+    50% { 
+        text-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.6);
+        filter: hue-rotate(180deg);
+    }
+}
+
 .about-visual {
     display: flex;
     justify-content: center;
