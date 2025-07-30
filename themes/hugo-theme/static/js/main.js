@@ -105,7 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 doomEasterEggActive = false;
                 
                 // Count as easter egg
-                window.easterEggCount('doom-music');
+                window.easterEggCount('snake');
+                triggerKonamiEasterEgg();
                 
                 // Reset counter
                 clickCount = 0;
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.style.animation = '';
                 }, 5000);
                 
-                console.log('🎵 Doom easter egg activated! (Audio disabled for performance)');
+                console.log('🐍 Snake easter egg activated!');
             }
         };
         
@@ -172,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3 style="margin: 0 0 15px 0; color: #0F0;">🐍 SNAKE GAME 🐍</h3>
             <canvas id="snakeCanvas" width="400" height="300" style="border: 1px solid #0F0; background: #000;"></canvas>
             <p style="margin: 10px 0 0 0; font-size: 14px;">Score: <span id="snakeScore">0</span></p>
-            <p style="margin: 5px 0 0 0; font-size: 12px; opacity: 0.7;">Use arrow keys to play</p>
+            <p style="margin: 5px 0 0 0; font-size: 12px; opacity: 0.7;">Use arrow keys or WASD to play</p>
             <button onclick="this.parentElement.remove(); stopSnakeGame();" style="
                 background: #0F0;
                 color: #000;
@@ -253,7 +254,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function gameLoop() {
-            if (!gameRunning) return;
+            if (!gameRunning) {
+                return;
+            }
             
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -264,6 +267,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 ctx.fillStyle = '#F00';
                 ctx.font = '30px Arial';
                 ctx.fillText('GAME OVER!', canvas.width/2 - 80, canvas.height/2);
+                ctx.fillStyle = '#fff';
+                ctx.font = '16px Arial';
+                ctx.fillText('Press R to restart', canvas.width/2 - 60, canvas.height/2 + 30);
                 return;
             }
             
@@ -273,22 +279,96 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(gameLoop, 150);
         }
         
+        function restartSnakeGame() {
+            // Reset game state
+            snake = [{x: 10, y: 10}];
+            food = spawnFood();
+            dx = 1;
+            dy = 0;
+            score = 0;
+            gameRunning = true;
+            
+            // Update score display
+            document.getElementById('snakeScore').textContent = score;
+            
+            // Remove restart button
+            const restartBtn = document.getElementById('snakeRestartBtn');
+            if (restartBtn) {
+                restartBtn.remove();
+            }
+            
+            // Restart game loop
+            gameLoop();
+        }
+        
+        // Add keyboard restart support
+        document.addEventListener('keydown', function(e) {
+            if (!gameRunning && (e.key === 'r' || e.key === 'R')) {
+                restartSnakeGame();
+            }
+        });
+        
         document.addEventListener('keydown', function(e) {
             if (!gameRunning) return;
             
             switch(e.key) {
                 case 'ArrowUp':
+                case 'w':
+                case 'W':
                     if (dy !== 1) { dx = 0; dy = -1; }
                     break;
                 case 'ArrowDown':
+                case 's':
+                case 'S':
                     if (dy !== -1) { dx = 0; dy = 1; }
                     break;
                 case 'ArrowLeft':
+                case 'a':
+                case 'A':
                     if (dx !== 1) { dx = -1; dy = 0; }
                     break;
                 case 'ArrowRight':
+                case 'd':
+                case 'D':
                     if (dx !== -1) { dx = 1; dy = 0; }
                     break;
+            }
+        });
+        
+        // Touch controls for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+        });
+        
+        canvas.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            if (!gameRunning) return;
+            
+            const touch = e.changedTouches[0];
+            const deltaX = touch.clientX - touchStartX;
+            const deltaY = touch.clientY - touchStartY;
+            
+            // Determine swipe direction based on larger delta
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                // Horizontal swipe
+                if (deltaX > 30 && dx !== -1) { // Swipe right
+                    dx = 1; dy = 0;
+                } else if (deltaX < -30 && dx !== 1) { // Swipe left
+                    dx = -1; dy = 0;
+                }
+            } else {
+                // Vertical swipe
+                if (deltaY > 30 && dy !== -1) { // Swipe down
+                    dx = 0; dy = 1;
+                } else if (deltaY < -30 && dy !== 1) { // Swipe up
+                    dx = 0; dy = -1;
+                }
             }
         });
         
@@ -297,6 +377,28 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         gameLoop();
+    }
+    
+    // Alternative Snake trigger: click about-gif
+    const aboutGif = document.querySelector('.about-gif');
+    if (aboutGif) {
+        aboutGif.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.matrix();
+            window.easterEggCount('matrix');
+        });
+        
+        // Add visual indication that it's clickable
+        aboutGif.style.cursor = 'pointer';
+        aboutGif.style.transition = 'transform 0.2s ease';
+        
+        aboutGif.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+        
+        aboutGif.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
     }
     
     // 3. Rainbow Mode Function (accessible via console) - ENHANCED
@@ -397,10 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 5. Secret Click Areas
     const secretAreas = [
-        { x: 5, y: 5, message: '🎯 You found a secret area!' },
-        { x: 95, y: 5, message: '🌟 Another hidden spot!' },
         { x: 5, y: 95, message: '🎪 Secret circus area!' },
-        { x: 95, y: 95, message: '🔍 Hidden corner discovered!' }
     ];
     
     document.addEventListener('click', function(e) {
@@ -412,6 +511,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 showSecretMessage(area.message, e.clientX, e.clientY);
                 window.easterEggCount('secret-area');
                 console.log(`🎯 Secret area found! Clicked at ${x.toFixed(1)}%, ${y.toFixed(1)}% (target: ${area.x}%, ${area.y}%)`);
+                window.rainbow();
+                window.easterEggCount('rainbow');
             }
         });
     });
@@ -566,8 +667,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (discoveredEasterEggs.length === 5) {
                 console.log('%c🎉 You\'ve found 5 easter eggs! You\'re an explorer! 🎉', 'color: #10b981; font-size: 16px; font-weight: bold;');
                 showEasterEggGuide();
-            } else if (discoveredEasterEggs.length === 11) {
-                console.log('%c🏆 MASTER EGG HUNTER! You\'ve found all 11 easter eggs! 🏆', 'color: #f59e0b; font-size: 18px; font-weight: bold;');
+            } else if (discoveredEasterEggs.length === 10) {
+                console.log('%c🏆 MASTER EGG HUNTER! You\'ve found all 10 easter eggs! 🏆', 'color: #f59e0b; font-size: 18px; font-weight: bold;');
                 showMasterGuide();
             }
         }
@@ -903,71 +1004,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10000);
     }, 30000);
     
-    // 10. Mouse Trail Easter Egg (double-click to activate) - ENHANCED
-    let mouseTrailActive = false;
-    let mouseTrail = [];
-    
-    document.addEventListener('dblclick', function() {
-        if (!mouseTrailActive) {
-            mouseTrailActive = true;
-            window.easterEggCount('mouse-trail');
-            
-            const trailHandler = function(e) {
-                const dot = document.createElement('div');
-                dot.style.cssText = `
-                    position: fixed;
-                    left: ${e.clientX - 5}px;
-                    top: ${e.clientY - 5}px;
-                    width: 10px;
-                    height: 10px;
-                    background: linear-gradient(45deg, #6366f1, #ec4899);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 9999;
-                    animation: trailFade 1.5s ease-out forwards;
-                    transition: opacity 0.5s ease-out;
-                `;
-                document.body.appendChild(dot);
-                
-                mouseTrail.push(dot);
-                
-                setTimeout(() => {
-                    if (dot.parentElement) {
-                        dot.style.opacity = '0';
-                        setTimeout(() => {
-                            if (dot.parentElement) {
-                                dot.parentElement.removeChild(dot);
-                            }
-                            mouseTrail = mouseTrail.filter(d => d !== dot);
-                        }, 500);
-                    }
-                }, 1000);
-            };
-            
-            document.addEventListener('mousemove', trailHandler);
-            
-            // Stop after 10 seconds with smooth fade
-            setTimeout(() => {
-                mouseTrailActive = false;
-                document.removeEventListener('mousemove', trailHandler);
-                
-                // Fade out remaining dots
-                mouseTrail.forEach(dot => {
-                    if (dot.parentElement) {
-                        dot.style.opacity = '0';
-                        setTimeout(() => {
-                            if (dot.parentElement) {
-                                dot.parentElement.removeChild(dot);
-                            }
-                        }, 500);
-                    }
-                });
-                mouseTrail = [];
-            }, 10000);
-        }
-    });
-    
-    // 11. Pong Easter Egg (click "Phong" from Blinn-Phong shading)
+    // 10. Pong Easter Egg (click "Phong" from Blinn-Phong shading)
     
     // Find and make "Phong" clickable
     function setupPongEasterEgg() {
@@ -1060,7 +1097,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3 style="margin: 0 0 15px 0; color: #fff; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 2px;">🏓 Phong? Pong! 🏓</h3>
             <canvas id="${gameId}-canvas" width="400" height="300" style="border: 1px solid #fff; background: #000; image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;"></canvas>
             <p style="margin: 10px 0 0 0; font-size: 14px; font-family: 'Courier New', monospace;">Score: <span id="${gameId}-score">0 - 0</span></p>
-            <p style="margin: 5px 0 0 0; font-size: 12px; opacity: 0.7; font-family: 'Courier New', monospace;">Use W/S keys to move paddle</p>
+            <p style="margin: 5px 0 0 0; font-size: 12px; opacity: 0.7; font-family: 'Courier New', monospace;">Desktop: W/S keys | Mobile: Touch to move paddle</p>
             <button onclick="endPongGame('${gameId}');" style="
                 background: #fff;
                 color: #000;
@@ -1083,12 +1120,18 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Game objects
         const ball = {
-            x: Math.floor(canvas.width / 2 / 20) * 20 + 10,
-            y: Math.floor(canvas.height / 2 / 20) * 20 + 10,
+            x: canvas.width / 2 - 5,
+            y: canvas.height / 2 - 5,
             size: 10,
             dx: 5,
-            dy: 5
+            dy: 5,
+            paused: true // Start paused
         };
+        
+        // Start ball after 1 second
+        setTimeout(() => {
+            ball.paused = false;
+        }, 1000);
         
         const paddle = {
             x: 10,
@@ -1120,6 +1163,12 @@ document.addEventListener('DOMContentLoaded', function() {
         function drawBall() {
             ctx.fillStyle = '#fff';
             ctx.fillRect(ball.x, ball.y, ball.size, ball.size);
+            
+            // Add pause indicator
+            if (ball.paused) {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.font = '16px Arial';
+            }
         }
         
         function drawPaddle(paddle) {
@@ -1138,34 +1187,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function updateBall() {
+            if (ball.paused) {
+                return; // Skip updating if ball is paused
+            }
+            
+            // Store previous position for collision detection
+            const prevX = ball.x;
+            const prevY = ball.y;
+            
             ball.x += ball.dx * speedMultiplier;
             ball.y += ball.dy * speedMultiplier;
             
             // Ball collision with top and bottom
             if (ball.y + ball.size > canvas.height || ball.y < 0) {
                 ball.dy = -ball.dy;
+                ball.y = ball.y < 0 ? 0 : canvas.height - ball.size; // Prevent sticking to walls
             }
             
-            // Ball collision with paddles
-            if (ball.x < paddle.x + paddle.width &&
-                ball.x + ball.size > paddle.x &&
-                ball.y < paddle.y + paddle.height &&
-                ball.y + ball.size > paddle.y) {
+            // Improved paddle collision detection
+            // Check if ball was on one side of paddle and is now on the other side
+            const ballCenterX = ball.x + ball.size / 2;
+            const ballCenterY = ball.y + ball.size / 2;
+            
+            // Player paddle collision (left side)
+            if (ball.dx < 0 && // Ball moving left
+                prevX + ball.size >= paddle.x && // Ball was to the right of paddle
+                ball.x <= paddle.x + paddle.width && // Ball is now at or past paddle
+                ballCenterY >= paddle.y && // Ball center is within paddle height
+                ballCenterY <= paddle.y + paddle.height) {
+                
+                // Calculate collision point and adjust ball position
+                ball.x = paddle.x + paddle.width;
                 ball.dx = -ball.dx;
                 hitCount++;
-                if (hitCount % 5 === 0) { // Increase speed every 5 paddle hits
-                    speedMultiplier += 0.1;
+                if (hitCount % 3 === 0) { // Increase speed every 3 paddle hits
+                    speedMultiplier += 0.15;
                 }
             }
             
-            if (ball.x < aiPaddle.x + aiPaddle.width &&
-                ball.x + ball.size > aiPaddle.x &&
-                ball.y < aiPaddle.y + aiPaddle.height &&
-                ball.y + ball.size > aiPaddle.y) {
+            // AI paddle collision (right side)
+            if (ball.dx > 0 && // Ball moving right
+                prevX <= aiPaddle.x + aiPaddle.width && // Ball was to the left of paddle
+                ball.x + ball.size >= aiPaddle.x && // Ball is now at or past paddle
+                ballCenterY >= aiPaddle.y && // Ball center is within paddle height
+                ballCenterY <= aiPaddle.y + aiPaddle.height) {
+                
+                // Calculate collision point and adjust ball position
+                ball.x = aiPaddle.x - ball.size;
                 ball.dx = -ball.dx;
                 hitCount++;
-                if (hitCount % 5 === 0) { // Increase speed every 5 paddle hits
-                    speedMultiplier += 0.1;
+                if (hitCount % 3 === 0) { // Increase speed every 3 paddle hits
+                    speedMultiplier += 0.15;
                 }
             }
             
@@ -1179,6 +1251,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 // Reset hit count for next round
                 hitCount = 0;
+                
+                // Check for win condition
+                if (playerScore >= 21) {
+                    gameRunning = false;
+                    window.currentPongGameRunning = false;
+                    ctx.fillStyle = '#000';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#0F0';
+                    ctx.font = '30px Arial';
+                    ctx.fillText('PLAYER WINS!', canvas.width/2 - 80, canvas.height/2);
+                    ctx.fillStyle = '#fff';
+                    ctx.font = '16px Arial';
+                    ctx.fillText(`Final Score: ${playerScore} - ${aiScore}`, canvas.width/2 - 60, canvas.height/2 + 30);
+                    ctx.fillText('Press R to restart', canvas.width/2 - 60, canvas.height/2 + 50);
+                    return;
+                }
+                
                 resetBall();
             } else if (ball.x < 0) {
                 // Ball passed player paddle - AI scores, but game continues
@@ -1187,15 +1276,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (scoreElement && gameRunning) {
                     scoreElement.textContent = playerScore + ' - ' + aiScore;
                 }
+                
+                // Check for win condition
+                if (aiScore >= 21) {
+                    gameRunning = false;
+                    window.currentPongGameRunning = false;
+                    ctx.fillStyle = '#000';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#F00';
+                    ctx.font = '30px Arial';
+                    ctx.fillText('AI WINS!', canvas.width/2 - 60, canvas.height/2);
+                    ctx.fillStyle = '#fff';
+                    ctx.font = '16px Arial';
+                    ctx.fillText(`Final Score: ${playerScore} - ${aiScore}`, canvas.width/2 - 60, canvas.height/2 + 30);
+                    ctx.fillText('Press R to restart', canvas.width/2 - 60, canvas.height/2 + 50);
+                    return;
+                }
+                
                 resetBall();
             }
         }
         
         function resetBall() {
-            ball.x = Math.floor(canvas.width / 2 / 20) * 20 + 10;
-            ball.y = Math.floor(canvas.height / 2 / 20) * 20 + 10;
+            ball.x = canvas.width / 2 - 5;
+            ball.y = canvas.height / 2 - 5;
             ball.dx = -ball.dx;
             ball.dy = (Math.random() > 0.5 ? 3 : -3);
+            speedMultiplier = 1.0;
+            
+            // Pause ball movement for 1 second after spawn
+            ball.paused = true;
+            setTimeout(() => {
+                ball.paused = false;
+            }, 1000);
         }
         
         function updatePaddles() {
@@ -1272,6 +1385,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Touch controls for mobile
+        let touchStartY = 0;
+        let isTouching = false;
+        
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (!gameRunning || !window.currentPongGameRunning || window.currentPongGameId !== gameId) return;
+            
+            const touch = e.touches[0];
+            touchStartY = touch.clientY;
+            isTouching = true;
+        });
+        
+        canvas.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            if (!gameRunning || !window.currentPongGameRunning || window.currentPongGameId !== gameId || !isTouching) return;
+            
+            const touch = e.touches[0];
+            const deltaY = touch.clientY - touchStartY;
+            
+            // Move paddle based on touch position relative to canvas
+            const canvasRect = canvas.getBoundingClientRect();
+            const touchY = touch.clientY - canvasRect.top;
+            const targetY = (touchY / canvasRect.height) * canvas.height - paddle.height / 2;
+            
+            // Smooth paddle movement
+            if (targetY < paddle.y) {
+                paddle.dy = -paddle.speed;
+            } else if (targetY > paddle.y) {
+                paddle.dy = paddle.speed;
+            } else {
+                paddle.dy = 0;
+            }
+        });
+        
+        canvas.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            if (!gameRunning || !window.currentPongGameRunning || window.currentPongGameId !== gameId) return;
+            
+            isTouching = false;
+            paddle.dy = 0;
+        });
+        
         window.stopPongGame = function() {
             gameRunning = false;
             window.currentPongGameRunning = false;
@@ -1294,6 +1450,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fillStyle = '#fff';
             ctx.font = '16px Arial';
             ctx.fillText(`Final Score: ${playerScore} - ${aiScore}`, canvas.width/2 - 60, canvas.height/2 + 30);
+            ctx.fillText('Press R to restart', canvas.width/2 - 60, canvas.height/2 + 50);
             
             // Remove the game after a short delay
             setTimeout(() => {
@@ -1303,6 +1460,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 2000);
         };
+        
+        function restartPongGame(gameId) {
+            // Reset game state
+            playerScore = 0;
+            aiScore = 0;
+            speedMultiplier = 1.0;
+            hitCount = 0;
+            gameRunning = true;
+            window.currentPongGameRunning = true;
+            
+            // Reset ball
+            ball.x = canvas.width / 2 - 5;
+            ball.y = canvas.height / 2 - 5;
+            ball.dx = 5;
+            ball.dy = 5;
+            ball.paused = true;
+            
+            // Reset paddles
+            paddle.y = Math.floor(canvas.height / 2 / 20) * 20 - 20;
+            aiPaddle.y = Math.floor(canvas.height / 2 / 20) * 20 - 20;
+            
+            // Update score display
+            document.getElementById(`${gameId}-score`).textContent = '0 - 0';
+            
+            // Remove restart button
+            const restartBtn = document.getElementById('pongRestartBtn');
+            if (restartBtn) {
+                restartBtn.remove();
+            }
+            
+            // Start ball after 1 second
+            setTimeout(() => {
+                ball.paused = false;
+            }, 1000);
+            
+            // Restart game loop
+            gameLoop();
+        }
+        
+        // Add keyboard restart support for Pong
+        document.addEventListener('keydown', function(e) {
+            if (!gameRunning && (e.key === 'r' || e.key === 'R')) {
+                restartPongGame(gameId);
+            }
+        });
         
         gameLoop();
     }
