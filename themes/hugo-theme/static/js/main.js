@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if we've reached 10 clicks
             if (clickCount >= 10) {
                 // Disable the easter egg (but keep the event listener)
-                doomEasterEggActive = false;
+                // doomEasterEggActive = false;
                 
                 // Count as easter egg
                 window.easterEggCount('snake');

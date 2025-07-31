@@ -1,143 +1,163 @@
-# Hugo Huang - Personal Website
+# 🥚 Easter Eggs Guide
 
-Welcome to my personal website! This is a modern, colorful portfolio built with Hugo showcasing my work in AI research and reinforcement learning.
+Welcome to the secret easter eggs documentation for the Hugo site! This file contains all the hidden surprises and fun interactions I've added to make the site more entertaining.
 
-## 🚀 Features
+## 🎮 Interactive Easter Eggs
 
-- **Modern Design**: Clean, colorful, and playful design with smooth animations
-- **Responsive**: Works perfectly on desktop, tablet, and mobile devices
-- **Fast**: Built with Hugo for lightning-fast performance
-- **Blog Ready**: Integrated blog system for sharing thoughts and research
-- **SEO Optimized**: Proper meta tags and structured data
+### 1. **Snake Game Easter Egg** (Logo Click)
+- **How to trigger**: Click the logo text "Hugo Huang" 10 times on the homepage
+- **Effect**: Opens Snake game (same as Konami code)
+- **Location**: Homepage only
+<!-- - **Note**: One-time trigger, disabled after activation -->
 
-## 🎨 Design Highlights
+### 2. **Snake Game Easter Egg** (Konami Code)
+- **How to trigger**: 
+  - Press ↑↑↓↓←→←→BA (up, up, down, down, left, right, left, right, B, A)
+  - OR click the about-gif element on homepage
+- **Effect**: Opens a fully playable Snake game with Matrix-style green graphics
+- **Features**: 
+  - Score tracking and collision detection
+  - Arrow keys OR WASD controls
+  - Touch controls for mobile (swipe gestures)
+  - Food spawns anywhere (including on snake body)
+  - Only snake head can eat food
+  - Proper rectangular canvas handling (20x15 grid)
+  - Smooth gameplay without bugs
+  - Press R to restart when game over
+- **Location**: Any page (Konami code) or homepage (about-gif click)
 
-- **Colorful Gradients**: Beautiful gradient backgrounds and text effects
-- **Floating Animations**: Playful animated shapes in the hero section
-- **Smooth Transitions**: Hover effects and scroll animations
-- **Modern Typography**: Clean, readable fonts with proper hierarchy
+### 3. **Matrix Effect Easter Egg** (About-Gif Click)
+- **How to trigger**: Click the about-gif element on the homepage
+- **Effect**: Matrix-style falling characters with improved fade-out transition (10 seconds)
+- **Location**: Homepage only
 
-## 📁 Project Structure
+### 4. **Console Commands**
+- **`rainbow()`**: Enhanced rainbow color cycling on ALL text elements for 8 seconds with smooth fade-out
+- **`matrix()`**: Matrix-style falling characters with improved fade-out transition (10 seconds)
+- **`devMode()`**: Special particle explosion effect unlocked after finding 10 easter eggs
 
-```
-.
-├── content/           # Blog posts and content
-├── themes/           # Custom Hugo theme
-│   └── hugo-theme/
-│       ├── layouts/  # HTML templates
-│       ├── static/   # CSS, JS, and assets
-│       └── ...
-├── hugo.toml         # Hugo configuration
-└── README.md         # This file
-```
+### 5. **Keyboard Shortcuts**
+- **Ctrl/Cmd + Shift + R**: Activates enhanced rainbow mode
+- **Ctrl/Cmd + Shift + M**: Activates matrix effect with smooth transitions
+- **Space bar**: Makes the page bounce (counts only once per session)
+- **Shift + H + U + G + O**: Secret Hugo sequence (case-insensitive, works on all platforms)
 
-## 🛠️ Development
+### 6. **Secret Click Areas**
+- **How to find**: Click in specific hidden areas of the page
+- **Locations**: 
+  - Bottom-left corner (5%, 95%)
+- **Effect**: Shows colorful popup messages + triggers rainbow effect
 
-### Prerequisites
+### 7. **Footer Easter Egg**
+- **How to trigger**: Click the footer 7 times
+- **Effect**: Footer gets a rainbow gradient animation
 
-- [Hugo](https://gohugo.io/installation/) (Extended version recommended)
-- Git
+### 8. **Pong Game Easter Egg**
+- **How to trigger**: Click on the word "Phong" in "Blinn-Phong shading" text
+- **Effect**: Opens a fully playable Pong game with classic black and white graphics
+- **Features**: 
+  - Player vs AI gameplay with proper scoring
+  - W/S keys to control left paddle (desktop)
+  - Touch controls for mobile (drag to move paddle)
+  - Score tracking (Player - AI format)
+  - Win condition: First to 21 points wins
+  - Classic Pong aesthetics with dashed center line
+  - Robust ball physics and paddle collision detection
+  - Progressive speed increase every 3 hits
+  - Ball pause system (1-second pause after spawn)
+  - Single instance protection (no multiple games)
+  - Press R to restart when game over
+- **Location**: Homepage featured project and projects page
 
-### Local Development
+### 9. **High-Five Easter Egg**
+- **How to trigger**: Click the wave emoji (👋) on the homepage
+- **Effect**: 
+  - Large high-five emoji (🖐️) bounces in center
+  - "HIGH FIVE! 🎉" text appears with white background
+  - 20 "5" characters rain from top to bottom
+  - Original emoji scales and rotates
+- **Location**: Homepage only (hero section)
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Trenza1ore/trenza1ore.github.io.git
-   cd trenza1ore.github.io
-   ```
+### 10. **Easter Egg Indicator**
+- **When it appears**: After 30 seconds on any page
+- **Location**: Bottom-right corner (🥚 icon)
+- **Effect**: Clicking it gives a hint about console easter eggs
+- **Duration**: Disappears after 10 seconds
 
-2. Start the development server:
-   ```bash
-   hugo server --buildDrafts --buildFuture
-   ```
+## 🎯 Easter Egg Counter System
 
-3. Open your browser and visit `http://localhost:1313`
+The site tracks how many easter eggs you've found:
 
-### Building for Production
+- **5 eggs found**: Shows an easter egg guide with hints
+- **10 eggs found**: Shows master guide and unlocks `devMode()` function (all activatable easter eggs!)
+- **Console messages**: Updates with your progress
+- **Accurate counting**: Each easter egg only counts once per session
 
-```bash
-hugo --minify
-```
+## 🎨 Visual Effects
 
-The built site will be in the `public/` directory.
+### Animations Added:
+- `celebration`: Colorful gradient animation
+- `popup`: Improved scale and fade animation for popups
+- `bounce`: Page bounce effect
+- `rainbowText`: Color cycling for text
+- `matrixGlow`: Green glow effect
+- `secretPulse`: Subtle pulsing animation
+- `devModeEffect`: Enhanced particle effect with smooth transitions
+- `particleFloat`: Improved floating particle animation
+- `trailFade`: Enhanced mouse trail fade effect
+- `highFiveBounce`: High-five emoji bounce animation
+- `highFiveText`: High-five text slide animation
+- `rainFive`: Raining 5s animation
 
-## 📝 Adding Content
+### CSS Classes Added:
+- `.secret-area`: Hidden clickable areas
+- `.easter-egg-indicator`: The hint indicator
+- `.konami-celebration`: Konami code overlay
+- `.konami-text`: Konami celebration text
+- `.matrix-canvas`: Matrix rain canvas
+- `.rainbow-text`: Rainbow text effect
+- `.secret-popup`: Secret message popups
+- `.footer-easter-egg`: Footer celebration
+- `.pong-game-container`: Pong game container
+- `.pong-trigger`: Clickable Phong text
 
-### New Blog Post
+## 🔧 Technical Implementation
 
-```bash
-hugo new content blog/my-new-post.md
-```
+### JavaScript Features:
+- Event listeners for keyboard, mouse, and click events
+- **Canvas-based Snake game** with full game logic
+- **Canvas-based Pong game** with proper game state management
+- **Enhanced Matrix rain effect** with smooth transitions
+- Dynamic DOM manipulation for effects
+- Console logging with styled messages
+- Easter egg counter system with session-based tracking
+- Guide popup system
+- **Improved animation cleanup** with smooth fade-outs
+- **Cross-platform compatibility** for keyboard shortcuts
+- **Case-insensitive Hugo sequence** handling
+- **Single instance game protection** for Pong
+- **Performance optimizations**
 
-### Blog Post Front Matter
+### CSS Features:
+- Keyframe animations for all effects
+- **Enhanced transitions** for smooth fade-outs
+- Gradient backgrounds and transitions
+- Responsive design considerations
+- Z-index management for overlays
+- **Improved animation timing** and easing
 
-```yaml
----
-title: "Your Post Title"
-date: 2024-01-15
-draft: false
-tags: ["tag1", "tag2"]
----
-```
+## 🎉 Easter Egg List Summary
 
-## 🎯 Customization
+1. **Snake Game (Logo)** - Click logo 10 times
+2. **Snake Game (Konami)** - ↑↑↓↓←→←→BA (Konami code)
+3. **Matrix Effect** - Click about-gif on homepage OR `matrix()` or Ctrl+Shift+M
+4. **Rainbow Mode** - `rainbow()` or Ctrl+Shift+R
+5. **Secret Click Areas** - Click in corners (triggers rainbow)
+6. **Footer Celebration** - Click footer 7 times
+7. **Space Bounce** - Press Space bar (counts once per session)
+8. **Hugo Sequence** - Shift+H+U+G+O (case-insensitive)
+9. **Pong Game** - Click "Phong" in Blinn-Phong shading
+10. **High-Five** - Click wave emoji on homepage
+11. **Easter Egg Indicator** - Appears after 30s (not counted)
 
-### Colors and Theme
-
-The color scheme is defined in `themes/hugo-theme/static/css/style.css` using CSS custom properties:
-
-```css
-:root {
-    --primary: #6366f1;
-    --secondary: #ec4899;
-    --accent: #f59e0b;
-    /* ... more colors */
-}
-```
-
-### Configuration
-
-Edit `hugo.toml` to update:
-- Site title and description
-- Social media links
-- Navigation menu
-- Base URL
-
-## 🚀 Deployment
-
-This site is configured for GitHub Pages deployment. The site will be automatically built and deployed when you push to the main branch.
-
-### Manual Deployment
-
-1. Build the site:
-   ```bash
-   hugo --minify
-   ```
-
-2. Push the `public/` directory to your GitHub Pages branch
-
-## 📊 Performance
-
-- **Lighthouse Score**: 95+ across all metrics
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-
-## 🤝 Contributing
-
-Feel free to submit issues and enhancement requests!
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔗 Links
-
-- **Website**: https://trenza1ore.github.io
-- **GitHub**: https://github.com/Trenza1ore
-- **LinkedIn**: https://uk.linkedin.com/in/hugohuang123
-- **Google Scholar**: https://scholar.google.com/citations?user=1TIEH0EAAAAJ
-
----
-
-Built with ❤️ using [Hugo](https://gohugo.io/) 
+**Total Activatable Easter Eggs: 10**
