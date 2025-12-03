@@ -4,11 +4,12 @@ title = 'Hugo Huang'
 theme = 'hugo-theme'
 
 [params]
-  description = "Research engineer @ Huawei R&D UK, big fan of Doom"
+  description = "Research Engineer @ Huawei R&D UK, big fan of Doom"
   author = "Hugo Huang"
   github = "https://github.com/Trenza1ore"
   linkedin = "https://uk.linkedin.com/in/hugohuang123"
   google_scholar = "https://scholar.google.com/citations?user=1TIEH0EAAAAJ"
+  orcid = "https://orcid.org/0009-0002-7524-9487"
   
 [menu]
   [[menu.main]]
