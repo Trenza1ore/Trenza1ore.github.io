@@ -10,6 +10,7 @@ theme = 'hugo-theme'
   linkedin = "https://uk.linkedin.com/in/hugohuang123"
   google_scholar = "https://scholar.google.com/citations?user=1TIEH0EAAAAJ"
   orcid = "https://orcid.org/0009-0002-7524-9487"
+  openjiuwen = "https://openjiuwen.com/en/"
   
 [menu]
   [[menu.main]]
