@@ -21,11 +21,12 @@
             {{ with .Params.linktree }}
             <div class="linktree-stack" role="list">
                 {{ range . }}
-                <a class="linktree-card" href="{{ .url }}" target="_blank" rel="noopener noreferrer" role="listitem">
+                <a class="linktree-card" role="listitem"
+                    href="{{ if .internal }}{{ .url | relURL }}{{ else }}{{ .url }}{{ end }}"
+                    {{ if not .internal }}target="_blank" rel="noopener noreferrer"{{ end }}
+                    {{ with .download }}download="{{ . }}"{{ end }}>
                     <span class="linktree-card__icon linktree-card__icon--{{ .icon }}" aria-hidden="true">
-                        <svg class="linktree-card__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                            {{ partial "linktree-icon-inner.html" .icon }}
-                        </svg>
+                        <img class="linktree-card__img" src="{{ printf "icons/%s.svg" .icon | relURL }}" alt="" width="22" height="22" loading="lazy" decoding="async">
                     </span>
                     <span class="linktree-card__body">
                         <span class="linktree-card__title">{{ .title }}</span>

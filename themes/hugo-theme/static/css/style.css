@@ -2175,16 +2175,16 @@ section.gitcode-api-header p.gitcode-api-description {
 }
 
 .linktree-stack {
-    max-width: 44rem;
+    max-width: 68rem;
     margin: 0 auto var(--space-2xl);
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-sm);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
     .linktree-stack {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -2224,10 +2224,11 @@ section.gitcode-api-header p.gitcode-api-description {
     color: #fff;
 }
 
-.linktree-card__svg {
+.linktree-card__img {
     width: 1.375rem;
     height: 1.375rem;
     display: block;
+    object-fit: contain;
 }
 
 .linktree-card__icon--readthedocs {
@@ -2238,8 +2239,21 @@ section.gitcode-api-header p.gitcode-api-description {
     background: #24292f;
 }
 
+/* Full-color brand marks: light tiles so SVG fills show (paths default to black without fill). */
 .linktree-card__icon--gitcode {
-    background: #e0522d;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.1);
+}
+
+.linktree-card__icon--claude {
+    background: #fff7ed;
+    box-shadow: inset 0 0 0 1px rgba(217, 119, 87, 0.25);
+}
+
+.linktree-card__icon--gitcode .linktree-card__img,
+.linktree-card__icon--claude .linktree-card__img {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .linktree-card__icon--pypi {
@@ -2252,6 +2266,10 @@ section.gitcode-api-header p.gitcode-api-description {
 
 .linktree-card__icon--skillhub {
     background: #c2410c;
+}
+
+.linktree-card__icon--mcpb {
+    background: #0f766e;
 }
 
 .linktree-card__body {
