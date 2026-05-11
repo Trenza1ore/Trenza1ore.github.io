@@ -3,6 +3,8 @@ title: "GitCode API"
 layout: gitcode-api
 description: "Links for the GitCode API Python SDK — documentation, source, PyPI, mirror, agent skills, and more."
 date: 2026-05-11
+aliases:
+  - /gitcode/
 linktree:
   - title: "Documentation"
     subtitle: "Hosted at Read the Docs"
