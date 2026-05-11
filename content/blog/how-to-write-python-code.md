@@ -88,18 +88,20 @@ Change it to this:
 logger.debug("Model %r: output %d candidates", model, len(result))
 ```
 **Numbers**
-`%d` - Integer
-`%f` - Float
-`%e` - Scientific Notations
-`%g` - Switch between `%f` and `%e` automatically
-`%b` - Binary
-`%o` - Octo
-`%x` - Hex
+- `%d` - Integer
+- `%f` - Float
+- `%e` - Scientific Notations
+- `%g` - Switch between `%f` and `%e` automatically
+- `%b` - Binary
+- `%o` - Octo
+- `%x` - Hex
+- `%s` - String, calls an object's `__str__` method.
+- `%r` - Calls an object's `__repr__` method, use it for arbitrary objects.
 
 `%d` - For integers, `%3d`: formatted int should have length of at least 3
 `%03d`: like `%3d` but pads value with `0` (like `003`).
+
 `%f` - For floats, `%5.2f`: formatted float should keep 2 digits after `.` and have length of at least 5 (including `.`).
 `%o` 
 
-`%s` - For strings, `%5.2f`: formatted float should keep 2 digits after `.` and have length of at least 5 (including `.`).
-`%r` - Calls an object's `__repr__` method, use it for arbitrary objects.
+> You can use `*` to represent an arbitrary integer, so if you pass in `3` and `42` into `%*d` then it's formatting `42` as `%3d`.
