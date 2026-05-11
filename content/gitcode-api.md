@@ -1,0 +1,31 @@
+---
+title: "GitCode API"
+layout: gitcode-api
+description: "Links for the GitCode API Python SDK — documentation, source, PyPI, mirror, agent skills, and more."
+date: 2026-05-11
+linktree:
+  - title: "GitCode API documentation"
+    subtitle: "Read the Docs"
+    url: "https://gitcode-api.readthedocs.io/"
+    icon: "readthedocs"
+  - title: "GitHub source code"
+    subtitle: "Python SDK · CLI · MCP · community-maintained"
+    url: "https://github.com/Trenza1ore/GitCode-API"
+    icon: "github"
+  - title: "GitCode mirror repository"
+    subtitle: "AtomGit / GitCode"
+    url: "https://gitcode.com/SushiNinja/GitCode-API"
+    icon: "gitcode"
+  - title: "Python package index (PyPI)"
+    subtitle: "pip install gitcode-api"
+    url: "https://pypi.org/project/gitcode-api/"
+    icon: "pypi"
+  - title: "GitCode API skill (ClawHub)"
+    subtitle: "Agent skill for repos, pulls, users, search"
+    url: "https://clawhub.ai/trenza1ore/gitcode-api"
+    icon: "clawhub"
+  - title: "GitCode API skill (SkillHub)"
+    subtitle: "Curated AI skills for Chinese users"
+    url: "https://www.skillhub.cn/skills/gitcode-api"
+    icon: "skillhub"
+---

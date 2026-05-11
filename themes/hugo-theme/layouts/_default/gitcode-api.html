@@ -1,0 +1,46 @@
+{{ define "header" }}
+{{ partial "header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<section class="gitcode-api-header">
+    <div class="container">
+        <h1 class="gitcode-api-title" id="gitcode-api-page-title">{{ .Title }}</h1>
+        {{ with .Description }}
+        <p class="gitcode-api-description">{{ . }}</p>
+        {{ end }}
+    </div>
+</section>
+
+<section class="gitcode-api-content" aria-labelledby="gitcode-api-page-title">
+    <div class="container">
+        <article class="linktree-page">
+            <div class="post-content linktree-lead">
+                {{ .Content }}
+            </div>
+            {{ with .Params.linktree }}
+            <div class="linktree-stack" role="list">
+                {{ range . }}
+                <a class="linktree-card" href="{{ .url }}" target="_blank" rel="noopener noreferrer" role="listitem">
+                    <span class="linktree-card__icon linktree-card__icon--{{ .icon }}" aria-hidden="true">
+                        <svg class="linktree-card__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            {{ partial "linktree-icon-inner.html" .icon }}
+                        </svg>
+                    </span>
+                    <span class="linktree-card__body">
+                        <span class="linktree-card__title">{{ .title }}</span>
+                        {{ with .subtitle }}<span class="linktree-card__sub">{{ . }}</span>{{ end }}
+                    </span>
+                    <span class="linktree-card__chev" aria-hidden="true">→</span>
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </article>
+    </div>
+</section>
+{{ end }}
+
+{{ define "footer" }}
+{{ partial "footer.html" . }}
+{{ end }}

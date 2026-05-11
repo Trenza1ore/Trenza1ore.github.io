@@ -972,7 +972,8 @@ body {
 
 /* Projects and Publications Pages - Force styling with high specificity */
 section.projects-header,
-section.publications-header {
+section.publications-header,
+section.gitcode-api-header {
     padding: 4rem 0 !important;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     color: white !important;
@@ -995,7 +996,8 @@ section.blog-header {
     border: none !important;
 }
 
-section.blog-header::before {
+section.blog-header::before,
+section.gitcode-api-header::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1008,7 +1010,8 @@ section.blog-header::before {
 
 section.projects-header h1.projects-title,
 section.publications-header h1.publications-title,
-section.blog-header h1.blog-title {
+section.blog-header h1.blog-title,
+section.gitcode-api-header h1.gitcode-api-title {
     font-size: 3.5rem !important;
     font-weight: 700 !important;
     margin-bottom: 1rem !important;
@@ -1020,7 +1023,8 @@ section.blog-header h1.blog-title {
 
 section.projects-header p.projects-description,
 section.publications-header p.publications-description,
-section.blog-header p.blog-description {
+section.blog-header p.blog-description,
+section.gitcode-api-header p.gitcode-api-description {
     font-size: 1.25rem !important;
     opacity: 0.95 !important;
     position: relative !important;
@@ -1035,6 +1039,11 @@ section.blog-header p.blog-description {
 .publications-content,
 .blog-content {
     padding: var(--space-2xl) 0;
+}
+
+/* Tighter top spacing under the hero banner than list pages (blog/projects). */
+.gitcode-api-content {
+    padding: var(--space-lg) 0 var(--space-2xl);
 }
 
 /* Publications Grid */
@@ -1748,19 +1757,22 @@ section.blog-header p.blog-description {
     
     section.projects-header,
     section.publications-header,
-    section.blog-header {
+    section.blog-header,
+    section.gitcode-api-header {
         padding: 3rem 0 !important;
     }
     
     section.projects-header h1.projects-title,
     section.publications-header h1.publications-title,
-    section.blog-header h1.blog-title {
+    section.blog-header h1.blog-title,
+    section.gitcode-api-header h1.gitcode-api-title {
         font-size: 2.5rem !important;
     }
     
     section.projects-header p.projects-description,
     section.publications-header p.publications-description,
-    section.blog-header p.blog-description {
+    section.blog-header p.blog-description,
+    section.gitcode-api-header p.gitcode-api-description {
         font-size: 1.1rem !important;
     }
     
@@ -2155,4 +2167,123 @@ section.blog-header p.blog-description {
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3) !important;
     background-size: 400% 400% !important;
     animation: celebration 3s ease-in-out !important;
+}
+
+/* GitCode API / Linktree-style link hub */
+.linktree-page .linktree-lead {
+    margin-bottom: var(--space-md);
+}
+
+.linktree-stack {
+    max-width: 44rem;
+    margin: 0 auto var(--space-2xl);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+}
+
+@media (min-width: 640px) {
+    .linktree-stack {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.linktree-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-md);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: var(--bg-primary);
+    text-decoration: none;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.linktree-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(99, 102, 241, 0.35);
+}
+
+.linktree-card:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.linktree-card__icon {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.linktree-card__svg {
+    width: 1.375rem;
+    height: 1.375rem;
+    display: block;
+}
+
+.linktree-card__icon--readthedocs {
+    background: #2e8bc5;
+}
+
+.linktree-card__icon--github {
+    background: #24292f;
+}
+
+.linktree-card__icon--gitcode {
+    background: #e0522d;
+}
+
+.linktree-card__icon--pypi {
+    background: #3775a9;
+}
+
+.linktree-card__icon--clawhub {
+    background: #6d28d9;
+}
+
+.linktree-card__icon--skillhub {
+    background: #c2410c;
+}
+
+.linktree-card__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-align: left;
+}
+
+.linktree-card__title {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--text-primary);
+}
+
+.linktree-card__sub {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+.linktree-card__chev {
+    flex-shrink: 0;
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.linktree-card:hover .linktree-card__chev {
+    opacity: 1;
+    color: var(--primary);
 } 
